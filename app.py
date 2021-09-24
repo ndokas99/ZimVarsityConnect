@@ -4,7 +4,7 @@ from os import path
 from create_db import write
 
 app = Flask(__name__)
-app.debug = False
+app.debug = True
 app.config.update({
     "SECRET_KEY": 'H4HG75HF83H67BJ57HFUV5',
     "SQLALCHEMY_DATABASE_URI": 'sqlite:///universities.db',
@@ -51,11 +51,11 @@ def univs():
 
 @app.route('/universities/<string:name>')
 def univ(name):
-    result = University.query.filter_by(image=name).first()
-    var_name = result.name
+    var = University.query.filter_by(image=name).first()
+    addr = var.address.split('<br>')
     image = name
-    faculties = [fac for fac in result.faculty]
-    return render_template('univ.html', var_name=var_name, image=image, faculties=faculties)
+    faculties = [fac for fac in var.faculty]
+    return render_template('univ.html', addr=addr, var=var, image=image, faculties=faculties)
 
 
 @app.route('/guidance')

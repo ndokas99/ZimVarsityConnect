@@ -4,12 +4,12 @@ from sqlite3 import connect
 def write():
     con = connect("universities.db")
 
-    universities = [["University of Zimbabwe", "uz", "Knowledge, Diligence and Integrity", "P.O. Box MP 167\nMt. Pleasant\nHarare.", "", "https://uz.ac.zw"],
-                    ["Great Zimbabwe University", "gzu", "Knowledge, Culture and Development", "P.O Box 1235\nMasvingo\nZimbabwe", "+263782780662", "https://www.gzu.ac.zw/"],
-                    ["Women's University in Africa", "wua", "Addressing Gender Disparity and Fostering Equality in University Education", "P.O. Box GD 32 Greendale\n549 Arcturus Road\nManresa\nHarare", "+263242459601", "http://www.wua.ac.zw"],
-                    ["Chinhoyi University of Technology", "cut", "Technology, Innovation, Entrepreneurship and Wealth Creation", "Private Bag 7724\nChinhoyi\nZimbabwe", "+263 6721 22203-5", "https://www.cut.ac.zw"],
-                    ["Zimbabwe Open University", "zou", "Empowerment Through Open Learning", "Box 1810 Gweru\nNo. 16 Victory Road\nGweru East", "+263 54 226002/3", "http://www.zou.ac.zw"],
-                    ["Midlands State Univeristy", "msu", "Our Hands, Our Minds, Our Destiny", "Private Bag 9055\nSenga Road\nGweru", "+263-54-2260359", "https://ww5.msu.ac.zw"]]
+    universities = [["University of Zimbabwe", "uz", "Knowledge, Diligence and Integrity", "P.O. Box MP 167<br>Mt. Pleasant<br>Harare", "", "https://www.uz.ac.zw"],
+                    ["Great Zimbabwe University", "gzu", "Knowledge, Culture and Development", "P.O Box 1235<br>Masvingo<br>Zimbabwe", "+263782780662", "https://www.gzu.ac.zw/"],
+                    ["Women's University in Africa", "wua", "Addressing Gender Disparity and Fostering Equality in University Education", "P.O. Box GD 32 Greendale<br>549 Arcturus Road<br>Manresa<br>Harare", "+263242459601", "http://www.wua.ac.zw"],
+                    ["Chinhoyi University of Technology", "cut", "Technology, Innovation, Entrepreneurship and Wealth Creation", "Private Bag 7724<br>Chinhoyi<br>Zimbabwe", "+263 6721 22203-5", "https://www.cut.ac.zw"],
+                    ["Zimbabwe Open University", "zou", "Empowerment Through Open Learning", "Box 1810 Gweru<br>No. 16 Victory Road<br>Gweru East", "+263 54 226002/3", "http://www.zou.ac.zw"],
+                    ["Midlands State Univeristy", "msu", "Our Hands, Our Minds, Our Destiny", "Private Bag 9055<br>Senga Road<br>Gweru", "+263-54-2260359", "https://ww5.msu.ac.zw"]]
 
     for (univ, img, motto, addr, tel, email) in universities:
         con.execute("insert into university values (?, ?, ?, ?, ?, ?)", (univ, img, motto, addr, tel, email))

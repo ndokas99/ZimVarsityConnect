@@ -3,8 +3,10 @@
 {% block style %}
     <style>
         .container{
-            text-align: center;
             width: 90%;
+        }
+        table, h1, .col{
+            text-align: center;
         }
         tr th:first-child {
             width: 45%;
@@ -31,12 +33,23 @@
     </style>
 {% endblock %}
 
-{% block title %} ZVC {{ var_name }} {% endblock %}
+{% block title %} ZVC {{ var.name }} {% endblock %}
 
 {% block content %}
     <div class="container">
-        <img src="../static/media/{{ image }}.png" alt="{{ var_name }}">
-		<h1>{{ var_name }}</h1>
+        <div class="row">
+            <div class="col">
+                <img src="../static/media/{{ image }}.png" alt="{{ var.name }}">
+            </div>
+            <div class="col">
+                {% for detail in addr %}
+                    <p>{{ detail }}</p>
+                {% endfor %}
+                <p>{{ var.telephone }}</p>
+                <p><a href="{{ var.website }}">{{ var.website }}</a></p>
+            </div>
+        </div>
+		<h1>{{ var.name }}</h1>
 		<br>
         <table class="table table-responsive">
 			<thead>
