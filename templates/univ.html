@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block style %}
+    <style>
+        .container{
+            text-align: center;
+            width: 90%;
+        }
+        tr th:first-child {
+            width: 45%;
+        }
+        tr th:nth-child(2) {
+            width: 5%;
+        }
+        tr th:nth-child(3) {
+            width: 45%;
+        }
+        tr th:last-child {
+            width: 5%;
+        }
+        @media (min-width: 800px) {
+            .table-responsive {
+                display: table;
+            }
+        }
+        @media (max-width: 799px) {
+            .table-responsive {
+                display: block;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block title %} ZVC {{ var_name }} {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <img src="../static/media/{{ image }}.png" alt="{{ var_name }}">
+		<h1>{{ var_name }}</h1>
+		<br>
+        <table class="table table-responsive">
+			<thead>
+			  <tr>
+				 <th scope="col">Name</th>
+				 <th scope="col">Duration</th>
+				 <th scope="col">Entry Reqs</th>
+				 <th scope="col">Minimum points</th>
+			  </tr>
+			</thead>
+			<tbody>
+                {% for faculty in faculties %}
+                    <tr>
+                        <th scope="row" colspan="4">{{ faculty.name }}</th>
+                    </tr>
+                    {% for degree in faculty.degrees %}
+                        <tr>
+                            <td>{{ degree.name }}</td>
+                            <td>{{ degree.duration }}</td>
+                            <td>{{ degree.entry }}</td>
+                            <td>{{ degree.minimum }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

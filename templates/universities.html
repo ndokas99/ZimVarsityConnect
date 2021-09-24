@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block style %}
+    <style>
+        .thumbnail{
+            border: 1px solid grey;
+            border-bottom-style: ridge;
+            width: 100%;
+        }
+        .thumbnail div:first-child{
+            width: 25%;
+            height: 100px;
+            display: inline-block;
+        }
+        .thumbnail div:last-child{
+            width: 74%;
+			display: inline-block;
+            vertical-align: top;
+        }
+        @media all and (max-width:430px){
+            .thumbnail div:last-child {
+                width: 70%;
+            }
+        }
+        h1, h4, p{
+            text-align: center;
+        }
+        img{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        a {
+            color: black;
+        }
+        a:hover{
+            color: blue;
+        }
+    </style>
+{% endblock %}
+
+{% block title %} ZVC Universities {% endblock %}
+
+{% block content %}
+    <div class="container">
+		<h1>UNIVERSITIES</h1>
+		<hr>
+        <div class="gallery">
+
+		{% for univ in universities %}
+        		<div class="thumbnail" >
+                    <a href="/universities/{{ univ.image }}">
+                        <div>
+                            <img src="../static/media/{{ univ.image }}.png" alt="{{univ.name}}" class="cards"/>
+                        </div>
+                        <div>
+                           <h4>{{ univ.name }}</h4>
+                            <br>
+                            <p class="text_column">{{ univ.motto }}</p>
+                        </div>
+                    </a>
+        		</div>
+		{% endfor %}
+        </div>
+	</div>
+{% endblock %}
