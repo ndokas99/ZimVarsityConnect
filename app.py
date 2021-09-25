@@ -1,9 +1,10 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-
+from os import path
+from create_db import write
 
 app = Flask(__name__)
-app.debug = False
+app.debug = True
 app.config.update({
     "SECRET_KEY": 'H4HG75HF83H67BJ57HFUV5',
     "SQLALCHEMY_DATABASE_URI": 'sqlite:///universities.db',
@@ -61,6 +62,14 @@ def univ(name):
 def guide():
     return render_template("guidance.html")
 
+
+def create_database():
+    if not path.exists("universities.db"):
+        db.create_all(app=app)
+        write()
+
+
+create_database()
 
 if __name__ == '__main__':
     app.run('0.0.0.0')
