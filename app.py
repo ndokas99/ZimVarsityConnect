@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.debug = False
+app.debug = True
 app.config.update({
     "SECRET_KEY": 'H4HG75HF83H67BJ57HFUV5',
     "SQLALCHEMY_DATABASE_URI": 'sqlite:///universities.db',
@@ -44,8 +44,9 @@ def index():
 
 @app.route('/universities')
 def univs():
-    records = University.query.all()
-    return render_template("universities.html", universities=records)
+    with app.app_context():
+        records = University.query.all()
+        return render_template("universities.html", universities=records)
 
 
 @app.route('/universities/<string:name>')
